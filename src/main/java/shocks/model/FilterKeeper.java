@@ -12,6 +12,8 @@ public class FilterKeeper {
     private List<String> carModels;
     private List<String> carDrives;
 
+    private boolean hasDriveInfo;
+
     public String getCarMake() {
         return carMake;
     }
@@ -74,5 +76,13 @@ public class FilterKeeper {
 
     public void setCarDrives(List<String> carDrives) {
         this.carDrives = carDrives;
+    }
+
+    public boolean isHasDriveInfo() {
+        return hasDriveInfo;
+    }
+
+    public void setHasDriveInfo(boolean hasDriveInfo) {
+        this.hasDriveInfo = hasDriveInfo;
     }
 }

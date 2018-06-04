@@ -66,18 +66,21 @@ public class FilterServiceImpl implements FilterService {
         List<String> drives = this.filterDao.getDrives(year,make,model);
 
         //if no drives in system specified for chosen YearMakeModel combo - info is enough to show search result
-        if (drives.size()==0) return keeper;
-        else {
-            List<String> years = this.filterDao.getYears();
-            List<String> carMakes = this.filterDao.getCarMakes(year);
-            List<String> carModels = this.filterDao.getCarModels(year, make);
-            keeper.setYears(years);
-            keeper.setCarMakes(carMakes);
-            keeper.setCarModels(carModels);
-            keeper.setCarDrives(drives);
-
-            return keeper;
+        if (drives.size()==0) {
+            keeper.setHasDriveInfo(false);
         }
+        else {
+            keeper.setHasDriveInfo(true);
+        }
+        List<String> years = this.filterDao.getYears();
+        List<String> carMakes = this.filterDao.getCarMakes(year);
+        List<String> carModels = this.filterDao.getCarModels(year, make);
+        keeper.setYears(years);
+        keeper.setCarMakes(carMakes);
+        keeper.setCarModels(carModels);
+        keeper.setCarDrives(drives);
+
+        return keeper;
     }
 
     public void setFilterDao(FilterDao filterDao) {

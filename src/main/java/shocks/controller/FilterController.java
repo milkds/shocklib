@@ -58,19 +58,20 @@ public class FilterController {
     @RequestMapping("filterbymodel")
     private String filterByModel(@ModelAttribute("filterKeeper") FilterKeeper keeper, RedirectAttributes attrs){
         FilterKeeper driveKeeper = this.filterService.getDrives(keeper);
-        attrs.addFlashAttribute("fk", keeper);
-        if (driveKeeper.getCarDrives()==null){
+        attrs.addFlashAttribute("fk", driveKeeper);
+        /*if (!driveKeeper.isHasDriveInfo()){
             return "redirect:/showresults";
-        }
+        }*/
 
         return "redirect:/filterbycar";
     }
 
     @RequestMapping("filterbydrive")
     private String filterByDrive(@ModelAttribute("filterKeeper") FilterKeeper keeper, RedirectAttributes attrs){
-        attrs.addFlashAttribute("fk", keeper);
+        FilterKeeper driveKeeper = this.filterService.getDrives(keeper);
+        attrs.addFlashAttribute("fk", driveKeeper);
 
-        return "redirect:/showresults";
+        return "redirect:/filterbycar";
 
     }
 

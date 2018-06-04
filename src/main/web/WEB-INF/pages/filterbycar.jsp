@@ -50,6 +50,7 @@
 <c:url var="filterByMake" value="/filterbymake"/>
 <c:url var="filterByModel" value="/filterbymodel"/>
 <c:url var="filterByDrive" value="/filterbydrive"/>
+<c:url var="showResults" value="/showresults"/>
 <h1>Choose your destiny</h1>
 <table class="tg">
 
@@ -103,22 +104,45 @@
                 </td>
                 <%-- choose car drive:--%>
                 <c:if test="${!empty filterKeeper.carModel}">
-                    <td width="120">
-                        <form:form action="${filterByDrive}" modelAttribute="filterKeeper">
-                            <form:select path="carDrive" onchange="this.form.submit()">
-                                <c:if test="${empty filterKeeper.carDrive}">
-                                    <form:option value="" label="--- Select ---"/>
-                                </c:if>
-                                <c:if test="${!empty filterKeeper.carDrive}">
-                                    <form:option value="${filterKeeper.carDrive}" label="${filterKeeper.carDrive}"/>
-                                </c:if>
-                                <form:options items="${filterKeeper.carDrives}"/>
-                            </form:select>
+                    <c:if test="${!filterKeeper.hasDriveInfo}">
+                        <form:form action="${showResults}" modelAttribute="filterKeeper">
+                        <td width="120">
+                             <input type="submit" value="<spring:message text="Find Shocks"/>"/>
+                        </td>
                             <form:input type="hidden" path="carModel" value ="${filterKeeper.carModel}"/>
                             <form:input type="hidden" path="carMake" value ="${filterKeeper.carMake}"/>
                             <form:input type="hidden" path="year" value ="${filterKeeper.year}"/>
                         </form:form>
-                    </td>
+                    </c:if>
+                    <c:if test="${filterKeeper.hasDriveInfo}">
+                        <td width="120">
+                            <form:form action="${filterByDrive}" modelAttribute="filterKeeper">
+                                <form:select path="carDrive" onchange="this.form.submit()">
+                                    <c:if test="${empty filterKeeper.carDrive}">
+                                        <form:option value="" label="--- Select ---"/>
+                                    </c:if>
+                                    <c:if test="${!empty filterKeeper.carDrive}">
+                                        <form:option value="${filterKeeper.carDrive}" label="${filterKeeper.carDrive}"/>
+                                    </c:if>
+                                    <form:options items="${filterKeeper.carDrives}"/>
+                                </form:select>
+                                <form:input type="hidden" path="carModel" value ="${filterKeeper.carModel}"/>
+                                <form:input type="hidden" path="carMake" value ="${filterKeeper.carMake}"/>
+                                <form:input type="hidden" path="year" value ="${filterKeeper.year}"/>
+                            </form:form>
+
+                              <c:if test="${!empty filterKeeper.carDrive}">
+                            <form:form action="${showResults}" modelAttribute="filterKeeper">
+                            <td width="120">
+                                <input type="submit" value="<spring:message text="Find Shocks"/>"/>
+                            </td>
+                            <form:input type="hidden" path="carModel" value ="${filterKeeper.carModel}"/>
+                            <form:input type="hidden" path="carMake" value ="${filterKeeper.carMake}"/>
+                            <form:input type="hidden" path="year" value ="${filterKeeper.year}"/>
+                            </form:form>
+                              </c:if>
+                        </td>
+                    </c:if>
                 </c:if>
             </c:if>
         </c:if>
