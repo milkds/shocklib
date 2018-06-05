@@ -50,12 +50,12 @@
         </property>
     </bean>
 
-    <bean id="FilterDao" class="shocks.dao.FilterDaoMockImpl">
+    <bean id="filterDao" class="shocks.dao.FilterDaoImpl">
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 
     <bean id="filterService" class="shocks.service.FilterServiceImpl">
-        <property name="filterDao" ref="FilterDao"/>
+        <property name="filterDao" ref="filterDao"/>
     </bean>
 
     <context:component-scan base-package="shocks"/>

@@ -1,10 +1,11 @@
 package shocks.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import shocks.dao.FilterDao;
 import shocks.model.FilterKeeper;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @Service
