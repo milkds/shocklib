@@ -57,6 +57,13 @@
     <bean id="filterService" class="shocks.service.FilterServiceImpl">
         <property name="filterDao" ref="filterDao"/>
     </bean>
+    <bean id="carDao" class="shocks.dao.CarDaoMockImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="carService" class="shocks.service.CarServiceImpl">
+        <property name="carDao" ref="carDao"/>
+    </bean>
 
     <context:component-scan base-package="shocks"/>
 

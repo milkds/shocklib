@@ -146,47 +146,8 @@
                 </c:if>
             </c:if>
         </c:if>
-
-
-
-
-
-
     </tr>
-       <%-- choose car model:--%>
-       <%--<tr>
-           <form:form action="${filterAction}" commandName="filterKeeper">
-               <td width="120">
-                   <form:select path="carModel" onchange="this.form.submit()">
-                       <c:if test="${empty filterKeeper.carMake}">
-                           <form:option value="" label="--- Select ---"/>
-                       </c:if>
-                       <c:if test="${!empty filterKeeper.carMake}">
-                           <form:option value="${filterKeeper.carMake}" label="${filterKeeper.carMake}"/>
-                       </c:if>
-                       <form:options items="${filterKeeper.carMakes}"/>
-                   </form:select>
-               </td>
-           </form:form>
-       </tr>--%>
 </table>
-<%--<c:url var="whutAction" value="/whut"/>
-<form:form action="${whutAction}" commandName="TestBean">
-    <table>
-        <tr>
-            <td>
-                <form:label path="carMake">
-                    <spring:message text="Enter Test Info Here:"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="carMake"/>
-            </td>
-        </tr>
-    </table>
-    <input type="submit" value="<spring:message text="Whuuuuut?"/>"/>
-</form:form>--%>
-
 
 </body>
 </html>
