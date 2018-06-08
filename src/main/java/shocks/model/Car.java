@@ -26,7 +26,7 @@ public class Car {
     @Column(name = "CAR_DRIVE")
     private String drive;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "car")
     private List<Fitment> fitments;
 
     public int getCarID() {
@@ -83,5 +83,18 @@ public class Car {
 
     public void setFitments(List<Fitment> fitments) {
         this.fitments = fitments;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carID=" + carID +
+                ", yearStart='" + yearStart + '\'' +
+                ", yearFinish='" + yearFinish + '\'' +
+                ", make='" + make + '\'' +
+                ", carModel='" + carModel + '\'' +
+                ", drive='" + drive + '\'' +
+                '}';
     }
 }

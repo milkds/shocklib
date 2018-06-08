@@ -1,9 +1,9 @@
 package shocks.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.NaturalId;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "shocks")
@@ -33,6 +33,12 @@ public class ShockAbsorber {
 
     @Column(name = "IMG_LINKS")
     private String imgLink;
+
+    @Column(name = "PART_NUMBER")
+    private String partNo;
+
+    @OneToMany(mappedBy = "absorber")
+    private List<Fitment> fitments;
 
     public int getShockID() {
         return shockID;
@@ -96,5 +102,35 @@ public class ShockAbsorber {
 
     public void setImgLink(String imgLink) {
         this.imgLink = imgLink;
+    }
+
+    public List<Fitment> getFitments() {
+        return fitments;
+    }
+
+    public void setFitments(List<Fitment> fitments) {
+        this.fitments = fitments;
+    }
+
+    @Override
+    public String toString() {
+        return "ShockAbsorber{" +
+                "shockID=" + shockID +
+                ", shockMake='" + shockMake + '\'' +
+                ", shockSeries='" + shockSeries + '\'' +
+                ", extLength='" + extLength + '\'' +
+                ", colLength='" + colLength + '\'' +
+                ", upMount='" + upMount + '\'' +
+                ", lowMount='" + lowMount + '\'' +
+                ", imgLink='" + imgLink + '\'' +
+                '}';
+    }
+
+    public String getPartNo() {
+        return partNo;
+    }
+
+    public void setPartNo(String partNo) {
+        this.partNo = partNo;
     }
 }

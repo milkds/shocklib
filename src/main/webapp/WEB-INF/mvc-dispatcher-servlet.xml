@@ -39,7 +39,9 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-
+                <value>shocks.model.Car</value>
+                <value>shocks.model.Fitment</value>
+                <value>shocks.model.ShockAbsorber</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -57,7 +59,7 @@
     <bean id="filterService" class="shocks.service.FilterServiceImpl">
         <property name="filterDao" ref="filterDao"/>
     </bean>
-    <bean id="carDao" class="shocks.dao.CarDaoMockImpl">
+    <bean id="carDao" class="shocks.dao.CarDaoImpl">
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 

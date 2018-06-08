@@ -27,7 +27,8 @@ public class FilterDaoImpl implements FilterDao{
     @Override
     public List<String> getCarMakes(String year) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createNativeQuery("SELECT distinct CAR_MAKE from shock_abs.cars_main where YEAR_START<="+year+" and YEAR_FINISH>="+year);
+        Query query = session.createNativeQuery("SELECT distinct CAR_MAKE from shock_abs.cars_main where YEAR_START<="+year+
+                " and YEAR_FINISH>="+year+" order by CAR_MAKE asc");
         List<String> makes = query.list();
         logger.info(Arrays.toString(makes.toArray()));
         return makes;
@@ -37,7 +38,7 @@ public class FilterDaoImpl implements FilterDao{
     public List<String> getCarModels(String year, String carMake) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createNativeQuery("SELECT distinct CAR_MODEL from shock_abs.cars_main where YEAR_START<="+year+" and YEAR_FINISH>="+year
-                +" and CAR_MAKE='"+carMake+"'");
+                +" and CAR_MAKE='"+carMake+"'"+" order by CAR_MODEL asc");
         List<String> models = query.list();
         logger.info(Arrays.toString(models.toArray()));
         return models;

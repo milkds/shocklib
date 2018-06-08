@@ -85,4 +85,19 @@ public class FilterKeeper {
     public void setHasDriveInfo(boolean hasDriveInfo) {
         this.hasDriveInfo = hasDriveInfo;
     }
+
+    @Override
+    public String toString() {
+        return "FilterKeeper{" +
+                "year='" + year + '\'' +
+                ", carMake='" + carMake + '\'' +
+                ", carModel='" + carModel + '\'' +
+                ", carDrive='" + carDrive + '\'' +
+                ", years=" + years +
+                ", carMakes=" + carMakes +
+                ", carModels=" + carModels +
+                ", carDrives=" + carDrives +
+                ", hasDriveInfo=" + hasDriveInfo +
+                '}';
+    }
 }

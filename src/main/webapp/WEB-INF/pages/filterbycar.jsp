@@ -139,6 +139,7 @@
                             <form:input type="hidden" path="carModel" value ="${filterKeeper.carModel}"/>
                             <form:input type="hidden" path="carMake" value ="${filterKeeper.carMake}"/>
                             <form:input type="hidden" path="year" value ="${filterKeeper.year}"/>
+                            <form:input type="hidden" path="carDrive" value ="${filterKeeper.carDrive}"/>
                             </form:form>
                               </c:if>
                         </td>

@@ -2,6 +2,8 @@ package shocks.model;
 
 
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,10 +14,7 @@ public class Fitment {
     @Column(name = "LINK_ID")
     private int linkID;
 
-    @Column(name = "LINK_ID")
-    private int carID;
-
-    @Column(name = "PART_NUMBER")
+    @Column(name = "PART_NUMBER", insertable=false, updatable=false)
     private String partNo;
 
     @Column(name = "LIFT_START")
@@ -27,9 +26,13 @@ public class Fitment {
     @Column(name = "SHOCK_POSITION")
     private String shockPosition;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "SHOCK_ID")
     private ShockAbsorber absorber;
 
+    @ManyToOne
+    @JoinColumn(name = "CAR_ID")
+    private Car car;
 
     public int getLinkID() {
         return linkID;
@@ -37,14 +40,6 @@ public class Fitment {
 
     public void setLinkID(int linkID) {
         this.linkID = linkID;
-    }
-
-    public int getCarID() {
-        return carID;
-    }
-
-    public void setCarID(int carID) {
-        this.carID = carID;
     }
 
     public String getPartNo() {
@@ -86,4 +81,24 @@ public class Fitment {
     public void setAbsorber(ShockAbsorber absorber) {
         this.absorber = absorber;
     }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    @Override
+    public String toString() {
+        return "Fitment{" +
+                "linkID=" + linkID +
+                ", partNo='" + partNo + '\'' +
+                ", liftStart='" + liftStart + '\'' +
+                ", liftFinish='" + liftFinish + '\'' +
+                ", shockPosition='" + shockPosition + '\'' +
+                '}';
+    }
+
 }
