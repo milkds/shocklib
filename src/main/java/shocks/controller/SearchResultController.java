@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import shocks.model.Car;
 import shocks.model.FilterKeeper;
+import shocks.model.ShockFilter;
 import shocks.service.CarService;
 
 import java.util.ArrayList;
@@ -28,6 +29,12 @@ public class SearchResultController {
        model.addAttribute("Cars", cars);
 
         return "showresults";
+    }
+
+    @RequestMapping("showresultsbyshock")
+    public String showResultByShock(Model model, @ModelAttribute ("keeper")ShockFilter shockFilter){
+
+       return "";
     }
 
     public void setCarService(CarService carService) {

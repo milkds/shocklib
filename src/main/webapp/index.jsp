@@ -13,5 +13,6 @@
   <body>
   <a href="../../filterbycar/">find shock</a>
   <a href="../../showresults/">check results</a>
+  <a href="../../filterbyshock/">find shock by tech parameters</a>
     </body>
 </html>

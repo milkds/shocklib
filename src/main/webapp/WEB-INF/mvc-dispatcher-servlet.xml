@@ -55,16 +55,22 @@
     <bean id="filterDao" class="shocks.dao.FilterDaoImpl">
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
-
     <bean id="filterService" class="shocks.service.FilterServiceImpl">
         <property name="filterDao" ref="filterDao"/>
     </bean>
+
     <bean id="carDao" class="shocks.dao.CarDaoImpl">
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
-
     <bean id="carService" class="shocks.service.CarServiceImpl">
         <property name="carDao" ref="carDao"/>
+    </bean>
+
+    <bean id="shockFilterDao" class="shocks.dao.ShockFilterDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+    <bean id="shockFilterService" class="shocks.service.ShockFilterServiceImpl">
+        <property name="shockFilterDao" ref="shockFilterDao"/>
     </bean>
 
     <context:component-scan base-package="shocks"/>
