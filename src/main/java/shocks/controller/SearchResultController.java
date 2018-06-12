@@ -6,14 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import shocks.model.Car;
-import shocks.model.FilterKeeper;
-import shocks.model.ShockAbsorber;
-import shocks.model.ShockFilter;
+import shocks.model.*;
 import shocks.service.CarService;
 import shocks.service.ShockService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,6 +27,7 @@ public class SearchResultController {
     public String showResults(Model model, @ModelAttribute ("filterKeeper")FilterKeeper keeper){
        List<Car> cars = this.carService.getCars(keeper);
        model.addAttribute("Cars", cars);
+       model.addAttribute("partno", new ShockAbsorberRev());
 
         return "showresults";
     }
@@ -39,8 +36,17 @@ public class SearchResultController {
     public String showResultByShock(Model model, @ModelAttribute ("keeper")ShockFilter shockFilter){
         List<ShockAbsorber> shocks = this.shockService.getShocks(shockFilter);
         model.addAttribute("Shocks", shocks);
+        model.addAttribute("partno", new ShockAbsorberRev());
 
        return "showresbyshock";
+    }
+
+    @RequestMapping("shockdata")
+    public String showData(Model model, @ModelAttribute("partno") ShockAbsorberRev partNo){
+       ShockAbsorberRev shock = shockService.getShock(partNo.getPartNo());
+       model.addAttribute("shock", shock);
+
+       return "shockdata";
     }
 
     public void setCarService(CarService carService) {

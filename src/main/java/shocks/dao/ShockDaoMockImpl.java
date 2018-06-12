@@ -3,6 +3,7 @@ package shocks.dao;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import shocks.model.ShockAbsorber;
+import shocks.model.ShockAbsorberRev;
 import shocks.model.ShockFilter;
 
 import java.util.ArrayList;
@@ -31,5 +32,10 @@ public class ShockDaoMockImpl implements ShockDao {
 
         absorbers.add(absorber);
         return absorbers;
+    }
+
+    @Override
+    public ShockAbsorberRev getShock(String partNo) {
+        return null;
     }
 }

@@ -1,14 +1,12 @@
 package shocks.model;
 
-import org.hibernate.annotations.BatchSize;
-
 import javax.persistence.*;
 import java.util.List;
 
+
 @Entity
 @Table(name = "cars_main")
-public class Car {
-
+public class CarRev {
     @Id
     @Column(name = "CAR_ID")
     private int carID;
@@ -31,8 +29,8 @@ public class Car {
     @Column(name = "CAR_DRIVE")
     private String drive;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "car")
-    private List<Fitment> fitments;
+    @OneToMany(mappedBy = "car")
+    private List<FitmentRev> fitments;
 
     public int getCarID() {
         return carID;
@@ -82,11 +80,11 @@ public class Car {
         this.drive = drive;
     }
 
-    public List<Fitment> getFitments() {
+    public List<FitmentRev> getFitments() {
         return fitments;
     }
 
-    public void setFitments(List<Fitment> fitments) {
+    public void setFitments(List<FitmentRev> fitments) {
         this.fitments = fitments;
     }
 

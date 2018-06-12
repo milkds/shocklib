@@ -42,6 +42,9 @@
                 <value>shocks.model.Car</value>
                 <value>shocks.model.Fitment</value>
                 <value>shocks.model.ShockAbsorber</value>
+                <value>shocks.model.CarRev</value>
+                <value>shocks.model.FitmentRev</value>
+                <value>shocks.model.ShockAbsorberRev</value>
             </list>
         </property>
         <property name="hibernateProperties">

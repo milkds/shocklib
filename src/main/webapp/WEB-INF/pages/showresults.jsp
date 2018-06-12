@@ -6,20 +6,32 @@
 <head>
     <title>Search Results:</title>
 </head>
+<style type="text/css">
+    .linkButton {
+        background: none;
+        border: none;
+        color: #0066ff;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+</style>
 <body>
-
+<c:url var="shockData" value="/shockdata"/>
 <c:forEach items="${Cars}" var ="car">
+    ${car.yearStart} -  ${car.yearFinish} ${car.make} ${car.carModel} ${car.drive}
     <c:forEach items="${car.fitments}" var ="fitment">
         <table>
             <tr>
                 <td>
                     <table>
                         <tr>
-                            <td>${car.yearStart} -  ${car.yearFinish} ${car.make} ${car.carModel} ${car.drive}</td>
+                            <td></td>
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>
-                            <td>${fitment.partNo}</td>
+                            <form:form action="${shockData}" modelAttribute="partno">
+                                <form:input path="partNo" type="submit" class="linkButton" value ="${fitment.partNo}"/>
+                            </form:form>
                         </tr>
                         <tr>
                             <td>${fitment.absorber.shockMake}, ${fitment.absorber.shockSeries} series</td>

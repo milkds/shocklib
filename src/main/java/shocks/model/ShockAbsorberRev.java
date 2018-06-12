@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "shocks")
-public class ShockAbsorber {
+public class ShockAbsorberRev {
 
     @Id
     @Column(name = "SHOCK_ID")
@@ -35,8 +35,20 @@ public class ShockAbsorber {
     @Column(name = "PART_NUMBER")
     private String partNo;
 
-    @OneToMany(mappedBy = "absorber")
-    private List<Fitment> fitments;
+    @Column (name = "BODY_THICKNESS")
+    private String bodyThickness;
+
+    @Column (name = "SHOCK_NOTES")
+    private String shockNotes;
+
+    @Column (name = "SHOCK_NOTES2")
+    private String shockNotes2;
+
+    @OneToMany(mappedBy = "absorber", fetch = FetchType.EAGER)
+    private List<FitmentRev> fitments;
+
+    @Transient
+    private List<String> imgLinks;
 
     public int getShockID() {
         return shockID;
@@ -102,11 +114,11 @@ public class ShockAbsorber {
         this.imgLink = imgLink;
     }
 
-    public List<Fitment> getFitments() {
+    public List<FitmentRev> getFitments() {
         return fitments;
     }
 
-    public void setFitments(List<Fitment> fitments) {
+    public void setFitments(List<FitmentRev> fitments) {
         this.fitments = fitments;
     }
 
@@ -130,5 +142,37 @@ public class ShockAbsorber {
 
     public void setPartNo(String partNo) {
         this.partNo = partNo;
+    }
+
+    public List<String> getImgLinks() {
+        return imgLinks;
+    }
+
+    public void setImgLinks(List<String> imgLinks) {
+        this.imgLinks = imgLinks;
+    }
+
+    public String getBodyThickness() {
+        return bodyThickness;
+    }
+
+    public void setBodyThickness(String bodyThickness) {
+        this.bodyThickness = bodyThickness;
+    }
+
+    public String getShockNotes() {
+        return shockNotes;
+    }
+
+    public void setShockNotes(String shockNotes) {
+        this.shockNotes = shockNotes;
+    }
+
+    public String getShockNotes2() {
+        return shockNotes2;
+    }
+
+    public void setShockNotes2(String shockNotes2) {
+        this.shockNotes2 = shockNotes2;
     }
 }

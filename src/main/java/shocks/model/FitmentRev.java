@@ -1,16 +1,10 @@
 package shocks.model;
 
-
-
-import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "fitment")
-public class Fitment {
-
+public class FitmentRev {
     @Id
     @Column(name = "LINK_ID")
     private int linkID;
@@ -27,13 +21,19 @@ public class Fitment {
     @Column(name = "SHOCK_POSITION")
     private String shockPosition;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "SHOCK_ID")
-    private ShockAbsorber absorber;
+    @Column(name = "FITMENT_NOTES")
+    private String fitmentNotes;
+
+    @Column(name = "EXTRA_NOTES")
+    private String extraNotes;
 
     @ManyToOne
+    @JoinColumn(name = "SHOCK_ID")
+    private ShockAbsorberRev absorber;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CAR_ID")
-    private Car car;
+    private CarRev car;
 
     public int getLinkID() {
         return linkID;
@@ -75,19 +75,19 @@ public class Fitment {
         this.shockPosition = shockPosition;
     }
 
-    public ShockAbsorber getAbsorber() {
+    public ShockAbsorberRev getAbsorber() {
         return absorber;
     }
 
-    public void setAbsorber(ShockAbsorber absorber) {
+    public void setAbsorber(ShockAbsorberRev absorber) {
         this.absorber = absorber;
     }
 
-    public Car getCar() {
+    public CarRev getCar() {
         return car;
     }
 
-    public void setCar(Car car) {
+    public void setCar(CarRev car) {
         this.car = car;
     }
 
@@ -102,4 +102,19 @@ public class Fitment {
                 '}';
     }
 
+    public String getFitmentNotes() {
+        return fitmentNotes;
+    }
+
+    public void setFitmentNotes(String fitmentNotes) {
+        this.fitmentNotes = fitmentNotes;
+    }
+
+    public String getExtraNotes() {
+        return extraNotes;
+    }
+
+    public void setExtraNotes(String extraNotes) {
+        this.extraNotes = extraNotes;
+    }
 }

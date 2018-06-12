@@ -5,8 +5,8 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
-import shocks.model.Car;
 import shocks.model.ShockAbsorber;
+import shocks.model.ShockAbsorberRev;
 import shocks.model.ShockFilter;
 
 import javax.persistence.Query;
@@ -46,42 +46,22 @@ public class ShockDaoImpl implements ShockDao {
         return shocks;
     }
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    @Override
+    public ShockAbsorberRev getShock(String partNo) {
+        Session session = sessionFactory.getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<ShockAbsorberRev>query=builder.createQuery(ShockAbsorberRev.class);
+        Root<ShockAbsorberRev> root = query.from(ShockAbsorberRev.class);
+        query.where(builder.equal(root.get("partNo"),partNo));
+        Query q = session.createQuery(query);
+        ShockAbsorberRev shock = (ShockAbsorberRev)q.getSingleResult();
+        logger.info(shock);
+
+        return shock;
     }
 
-    private boolean checkForMultipleFilters(ShockFilter filterKeep){
-        boolean hasFilter = false;
-        String shockMake = filterKeep.getShockMake();
-        String colLength = filterKeep.getCoLength();
-        String extLength = filterKeep.getExtLength();
-        String upMount = filterKeep.getUpMount();
-        String lowMount = filterKeep.getLowMount();
-        if (shockMake!=null&&shockMake.length()>0){
-            return true;
-        }
-        if (colLength!=null&&colLength.length()>0){
-            hasFilter = true;
-        }
-        if (extLength!=null&&extLength.length()>0){
-            if (hasFilter){
-                return true;
-            }
-           else hasFilter=true;
-        }
-        if (upMount!=null&&upMount.length()>0){
-            if (hasFilter){
-                return true;
-            }
-            else hasFilter=true;
-        }
-        if (lowMount!=null&&lowMount.length()>0){
-            if (hasFilter){
-                return true;
-            }
-            return false;
-        }
-        return false;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     private List<Predicate> getPredicates(ShockFilter filterKeep, CriteriaBuilder builder, Root<ShockAbsorber> root){
