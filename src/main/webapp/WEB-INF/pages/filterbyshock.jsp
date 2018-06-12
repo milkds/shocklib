@@ -131,6 +131,11 @@
           <td>
               <form:form action="${showResults}" modelAttribute="keeper">
                   <input type="submit" value="<spring:message text="Find Shocks"/>"/>
+                  <form:input type="hidden" path="shockMake" value ="${keeper.shockMake}"/>
+                  <form:input type="hidden" path="coLength" value ="${keeper.coLength}"/>
+                  <form:input type="hidden" path="extLength" value ="${keeper.extLength}"/>
+                  <form:input type="hidden" path="upMount" value ="${keeper.upMount}"/>
+                  <form:input type="hidden" path="lowMount" value ="${keeper.lowMount}"/>
               </form:form>
           </td>
         </tr>

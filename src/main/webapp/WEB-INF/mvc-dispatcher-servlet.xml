@@ -73,6 +73,13 @@
         <property name="shockFilterDao" ref="shockFilterDao"/>
     </bean>
 
+    <bean id="shockDao" class="shocks.dao.ShockDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+    <bean id="shockService" class="shocks.service.ShockServiceImpl">
+        <property name="shockDao" ref="shockDao"/>
+    </bean>
+
     <context:component-scan base-package="shocks"/>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
