@@ -2,6 +2,7 @@ package shocks.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -45,6 +46,7 @@ public class ShockDaoImpl implements ShockDao {
 
         return shocks;
     }
+
 
     @Override
     public ShockAbsorberRev getShock(String partNo) {

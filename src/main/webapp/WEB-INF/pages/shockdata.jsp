@@ -7,6 +7,7 @@
     <title>Shock Absorber</title>
 </head>
 <body>
+<c:url var="showResults" value="/showresults"/>
 <table>
     <tr>
         <td>
@@ -75,6 +76,7 @@
 </table>
 <table>
     <c:forEach items="${shock.fitments}" var ="fitment">
+        <form:form action="${showResults}" modelAttribute="Keeper">
         <c:set var = "car" value = "${fitment.car}"/>
         <tr>
             <td> ${car.yearStart} -  ${car.yearFinish} ${car.make} ${car.carModel} ${car.drive}</td>
@@ -93,7 +95,17 @@
                 <td>Extra Notes: ${fitment.extraNotes}</td>
             </tr>
         </c:if>
-        <tr><td><br/></td></tr>
+            <form:input type="hidden" path="year" value ="${car.yearStart}"/>
+            <form:input type="hidden" path="carMake" value ="${car.make}"/>
+            <form:input type="hidden" path="carModel" value ="${car.carModel}"/>
+            <form:input type="hidden" path="carDrive" value ="${car.drive}"/>
+            <tr>
+                <td>
+                    <input type="submit" value="<spring:message text="More for this car"/>"/>
+                </td>
+            </tr>
+            <tr><td><br/></td></tr>
+        </form:form>
     </c:forEach>
 </table>
 

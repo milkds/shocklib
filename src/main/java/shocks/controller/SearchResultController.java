@@ -45,6 +45,7 @@ public class SearchResultController {
     public String showData(Model model, @ModelAttribute("partno") ShockAbsorberRev partNo){
        ShockAbsorberRev shock = shockService.getShock(partNo.getPartNo());
        model.addAttribute("shock", shock);
+       model.addAttribute("Keeper", new FilterKeeper());
 
        return "shockdata";
     }
