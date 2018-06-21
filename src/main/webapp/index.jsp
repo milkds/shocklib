@@ -12,7 +12,7 @@
   </head>
   <body>
   <a href="../../filterbycar/">find shock</a>
-  <a href="../../showresults/">check results</a>
+  <br>
   <a href="../../filterbyshock/">find shock by tech parameters</a>
     </body>
 </html>

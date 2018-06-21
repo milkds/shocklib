@@ -16,7 +16,6 @@
     </style>
 </head>
 <body>
-<c:url var="shockData" value="/shockdata"/>
     <c:forEach items="${Shocks}" var ="shock">
             <table>
                 <tr>
@@ -24,9 +23,7 @@
                         <table>
                             <tr>
                                 <td>
-                                <form:form action="${shockData}" modelAttribute="partno">
-                                    <form:input path="partNo" type="submit" class="linkButton" value ="${shock.partNo}"/>
-                                </form:form>
+                                    <a href="shockdata/${shock.partNo}">${shock.partNo}</a>
                               </td>
                             </tr>
                             <tr>

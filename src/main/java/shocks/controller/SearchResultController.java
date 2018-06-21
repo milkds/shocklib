@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import shocks.model.*;
 import shocks.service.CarService;
@@ -15,12 +16,8 @@ import java.util.List;
 @Controller
 public class SearchResultController {
 
-    @Autowired
-    @Qualifier(value = "carService")
-    private CarService carService;
 
-    @Autowired
-    @Qualifier(value = "shockService")
+    private CarService carService;
     private ShockService shockService;
 
    @RequestMapping("showresults")
@@ -38,22 +35,27 @@ public class SearchResultController {
         model.addAttribute("Shocks", shocks);
         model.addAttribute("partno", new ShockAbsorberRev());
 
+
        return "showresbyshock";
     }
 
-    @RequestMapping("shockdata")
-    public String showData(Model model, @ModelAttribute("partno") ShockAbsorberRev partNo){
-       ShockAbsorberRev shock = shockService.getShock(partNo.getPartNo());
-       model.addAttribute("shock", shock);
-       model.addAttribute("Keeper", new FilterKeeper());
+    @RequestMapping("shockdata/{partNo}")
+    public String showData(Model model, @PathVariable("partNo") String partNo){
+        ShockAbsorberRev shock = shockService.getShock(partNo);
+        model.addAttribute("shock", shock);
+        model.addAttribute("Keeper", new FilterKeeper());
 
-       return "shockdata";
+        return "shockdata";
     }
 
+    @Autowired
+    @Qualifier(value = "carService")
     public void setCarService(CarService carService) {
         this.carService = carService;
     }
 
+    @Autowired
+    @Qualifier(value = "shockService")
     public void setShockService(ShockService shockService) {
         this.shockService = shockService;
     }

@@ -16,7 +16,6 @@
     }
 </style>
 <body>
-<c:url var="shockData" value="/shockdata"/>
 <c:forEach items="${Cars}" var ="car">
     ${car.yearStart} -  ${car.yearFinish} ${car.make} ${car.carModel} ${car.drive}
     <c:forEach items="${car.fitments}" var ="fitment">
@@ -29,9 +28,7 @@
                         </tr>
                         <tr><td><br/></td></tr>
                         <tr>
-                            <form:form action="${shockData}" modelAttribute="partno">
-                                <form:input path="partNo" type="submit" class="linkButton" value ="${fitment.partNo}"/>
-                            </form:form>
+                            <a href="shockdata/${fitment.partNo}">${fitment.partNo}</a>
                         </tr>
                         <tr>
                             <td>${fitment.absorber.shockMake}, ${fitment.absorber.shockSeries} series</td>
