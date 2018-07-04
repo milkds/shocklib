@@ -7,6 +7,7 @@ import shocks.model.FilterKeeper;
 import shocks.model.Fitment;
 import shocks.model.ShockAbsorber;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,8 +42,8 @@ public class CarDaoMockImpl implements CarDao {
 
         absorber.setShockMake("Bilstein");
         absorber.setShockSeries("B8 5100");
-        absorber.setColLength("14,06");
-        absorber.setExtLength("18,43");
+        absorber.setColLength(new BigDecimal(24.06));
+        absorber.setExtLength(new BigDecimal(18.43));
         absorber.setUpMount("S1");
         absorber.setLowMount("ES25");
         absorber.setImgLink("https://productdesk.cart.bilsteinus.com//media/products/bilstein/24-238304_1.jpg");

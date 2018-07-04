@@ -83,6 +83,7 @@
                         <form:options items="${filterKeeper.carMakes}"/>
                     </form:select>
                     <form:input type="hidden" path="year" value ="${filterKeeper.year}"/>
+                    <form:input type="hidden" path="carMakes" value ="${filterKeeper.carMakes}"/>
                 </form:form>
             </td>
             <%-- choose car model:--%>

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import shocks.model.FilterKeeper;
 import shocks.service.FilterService;
 
+import java.util.List;
 
 
 @org.springframework.stereotype.Controller
@@ -48,6 +49,12 @@ public class FilterController {
     }
     @RequestMapping("filterbymake")
     private String filterByMake(@ModelAttribute("filterKeeper") FilterKeeper keeper, RedirectAttributes attrs){
+        if  (keeper.getCarMakes()!=null){
+            List<String> carMakers = keeper.getCarMakes();
+            for (String make: carMakers){
+                System.out.println(make);
+            }
+        }
         FilterKeeper modelKeeper = this.filterService.getCarModels(keeper);
         attrs.addFlashAttribute("fk", modelKeeper);
 

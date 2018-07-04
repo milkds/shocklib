@@ -6,6 +6,7 @@ import shocks.model.ShockAbsorber;
 import shocks.model.ShockAbsorberRev;
 import shocks.model.ShockFilter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class ShockDaoMockImpl implements ShockDao {
         absorber.setPartNo("SuperPuperPartNumber");
         absorber.setShockSeries("7800");
         absorber.setImgLink("https://productdesk.cart.bilsteinus.com//media/products/bilstein/24-238281_1.jpg");
-        absorber.setColLength("10");
-        absorber.setExtLength("20");
+        absorber.setColLength(new BigDecimal(10));
+        absorber.setExtLength(new BigDecimal(20));
         absorber.setUpMount("upM");
         absorber.setLowMount("lowM");
 

@@ -1,5 +1,6 @@
 package shocks.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ShockFilter {
@@ -9,6 +10,11 @@ public class ShockFilter {
     private String extLength;
     private String upMount;
     private String lowMount;
+
+    private BigDecimal coLengthFrom;
+    private BigDecimal coLengthTo;
+    private BigDecimal extLengthFrom;
+    private BigDecimal extLengthTo;
 
     private List<String> shockMakes;
     private List<String> coLengths;
@@ -105,6 +111,39 @@ public class ShockFilter {
     public void setReadyForFilter(boolean readyFoFilter) {
         this.readyForFilter = readyFoFilter;
     }
+
+    public BigDecimal getCoLengthFrom() {
+        return coLengthFrom;
+    }
+
+    public void setCoLengthFrom(BigDecimal coLengthFrom) {
+        this.coLengthFrom = coLengthFrom;
+    }
+
+    public BigDecimal getCoLengthTo() {
+        return coLengthTo;
+    }
+
+    public void setCoLengthTo(BigDecimal coLengthTo) {
+        this.coLengthTo = coLengthTo;
+    }
+
+    public BigDecimal getExtLengthFrom() {
+        return extLengthFrom;
+    }
+
+    public void setExtLengthFrom(BigDecimal extLengthFrom) {
+        this.extLengthFrom = extLengthFrom;
+    }
+
+    public BigDecimal getExtLengthTo() {
+        return extLengthTo;
+    }
+
+    public void setExtLengthTo(BigDecimal extLengthTo) {
+        this.extLengthTo = extLengthTo;
+    }
+
 
     @Override
     public String toString() {

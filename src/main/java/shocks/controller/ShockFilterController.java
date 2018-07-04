@@ -21,7 +21,6 @@ public class ShockFilterController {
     public String filterByShock(Model model){
         ShockFilter filterKeep = (ShockFilter)model.asMap().get("keeper");
         if (filterKeep==null){
-            System.out.println("filterkeep is null");
             filterKeep = new ShockFilter();
             this.shockFilterService.populateFilters(filterKeep);
         }
@@ -37,4 +36,5 @@ public class ShockFilterController {
         attrs.addFlashAttribute("keeper", keeper);
         return "redirect:/filterbyshock";
     }
+
 }

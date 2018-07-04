@@ -19,8 +19,6 @@ public class ShockFilterDaoImpl implements ShockFilterDao {
     @Override
     public void populateFilters(ShockFilter filterKeep) {
         filterKeep.setShockMakes(getDataForFilter(filterKeep,"SHOCK_MAKE"));
-        filterKeep.setCoLengths(getDataForFilter(filterKeep,"COLLAPSED_LENGTH"));
-        filterKeep.setExtLengths(getDataForFilter(filterKeep,"EXTENDED_LENGTH"));
         filterKeep.setUpMounts(getDataForFilter(filterKeep,"UPPER_MOUNTING"));
         filterKeep.setLowMounts(getDataForFilter(filterKeep,"LOWER_MOUNTING"));
     }
@@ -49,10 +47,10 @@ public class ShockFilterDaoImpl implements ShockFilterDao {
         sb.append("SELECT distinct %s FROM shock_abs.shocks");
         String shockMake = filterKeep.getShockMake();
         hasFilters = addFilterInfo(sb,hasFilters,"SHOCK_MAKE", shockMake);
-        String coLength = filterKeep.getCoLength();
+        /*String coLength = filterKeep.getCoLength();
         hasFilters = addFilterInfo(sb,hasFilters, "COLLAPSED_LENGTH", coLength);
         String extLength = filterKeep.getExtLength();
-        hasFilters = addFilterInfo(sb,hasFilters, "EXTENDED_LENGTH", extLength);
+        hasFilters = addFilterInfo(sb,hasFilters, "EXTENDED_LENGTH", extLength);*/
         String upMount = filterKeep.getUpMount();
         hasFilters = addFilterInfo(sb,hasFilters, "UPPER_MOUNTING", upMount);
         String lowMount = filterKeep.getLowMount();

@@ -1,6 +1,7 @@
 package shocks.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -18,10 +19,10 @@ public class ShockAbsorber {
     private String shockSeries;
 
     @Column(name = "EXTENDED_LENGTH")
-    private String extLength;
+    private BigDecimal extLength;
 
     @Column(name = "COLLAPSED_LENGTH")
-    private String colLength;
+    private BigDecimal colLength;
 
     @Column(name = "UPPER_MOUNTING")
     private String upMount;
@@ -62,19 +63,19 @@ public class ShockAbsorber {
         this.shockSeries = shockSeries;
     }
 
-    public String getExtLength() {
+    public BigDecimal getExtLength() {
         return extLength;
     }
 
-    public void setExtLength(String extLength) {
+    public void setExtLength(BigDecimal extLength) {
         this.extLength = extLength;
     }
 
-    public String getColLength() {
+    public BigDecimal getColLength() {
         return colLength;
     }
 
-    public void setColLength(String colLength) {
+    public void setColLength(BigDecimal colLength) {
         this.colLength = colLength;
     }
 

@@ -49,95 +49,67 @@
 <table class="tg">
     <tr>
         <td width="120">Shock Make</td>
-        <td width="120">Extended Length</td>
         <td width="120">Collapsed Length</td>
+        <td width="120">Extended Length</td>
         <td width="120">Upper Mount</td>
         <td width="120">Lower Mount</td>
     </tr>
     <tr>
-        <td>
-            <form:form action="${processInput}" modelAttribute="keeper">
-                <form:select path="shockMake" onchange="this.form.submit()">
-                    <c:if test="${!empty keeper.shockMake}">
-                        <form:option value="${keeper.shockMake}" label="${keeper.shockMake}"/>
-                    </c:if>
-                    <form:options items="${keeper.shockMakes}"/>
-                </form:select>
-                <form:input type="hidden" path="coLength" value ="${keeper.coLength}"/>
-                <form:input type="hidden" path="extLength" value ="${keeper.extLength}"/>
-                <form:input type="hidden" path="upMount" value ="${keeper.upMount}"/>
-                <form:input type="hidden" path="lowMount" value ="${keeper.lowMount}"/>
-            </form:form>
-        </td>
-        <td>
-            <form:form action="${processInput}" modelAttribute="keeper">
-                <form:select path="coLength" onchange="this.form.submit()">
-                    <c:if test="${!empty keeper.coLength}">
-                        <form:option value="${keeper.coLength}" label="${keeper.coLength}"/>
-                    </c:if>
-                    <form:options items="${keeper.coLengths}"/>
-                </form:select>
-                <form:input type="hidden" path="shockMake" value ="${keeper.shockMake}"/>
-                <form:input type="hidden" path="extLength" value ="${keeper.extLength}"/>
-                <form:input type="hidden" path="upMount" value ="${keeper.upMount}"/>
-                <form:input type="hidden" path="lowMount" value ="${keeper.lowMount}"/>
-            </form:form>
-        </td>
-        <td>
-            <form:form action="${processInput}" modelAttribute="keeper">
-                <form:select path="extLength" onchange="this.form.submit()">
-                    <c:if test="${!empty keeper.extLength}">
-                        <form:option value="${keeper.extLength}" label="${keeper.extLength}"/>
-                    </c:if>
-                    <form:options items="${keeper.extLengths}"/>
-                </form:select>
-                <form:input type="hidden" path="shockMake" value ="${keeper.shockMake}"/>
-                <form:input type="hidden" path="coLength" value ="${keeper.coLength}"/>
-                <form:input type="hidden" path="upMount" value ="${keeper.upMount}"/>
-                <form:input type="hidden" path="lowMount" value ="${keeper.lowMount}"/>
-            </form:form>
-        </td>
-        <td>
-            <form:form action="${processInput}" modelAttribute="keeper">
-                <form:select path="upMount" onchange="this.form.submit()">
+        <form:form id="selectForm" action="${processInput}" modelAttribute="keeper">
+             <td>
+                 <form:select path="shockMake" onchange="selectForm.submit()">
+                     <c:if test="${!empty keeper.shockMake}">
+                         <form:option value="${keeper.shockMake}" label="${keeper.shockMake}"/>
+                     </c:if>
+                     <form:options items="${keeper.shockMakes}"/>
+                 </form:select>
+             </td>
+            <td>
+                From:
+                <form:input path="coLengthFrom" type="number" step = "0.1" value="${keeper.coLengthFrom}" onchange="submit()"/>
+                <br>
+                To:
+                <form:input path="coLengthTo" type="number" step = "0.1" value="${keeper.coLengthTo}" onchange="submit()"/>
+            </td>
+            <td>
+                From:
+                <form:input path="extLengthFrom" type="number" step = "0.1" value="${keeper.extLengthFrom}" onchange="submit()"/>
+                <br>
+                To:
+                <form:input path="extLengthTo" type="number" step = "0.1" value="${keeper.extLengthTo}" onchange="submit()"/>
+            </td>
+            <td>
+                <form:select path="upMount" onchange="selectForm.submit()">
                     <c:if test="${!empty keeper.upMount}">
                         <form:option value="${keeper.upMount}" label="${keeper.upMount}"/>
                     </c:if>
                     <form:options items="${keeper.upMounts}"/>
                 </form:select>
-                <form:input type="hidden" path="shockMake" value ="${keeper.shockMake}"/>
-                <form:input type="hidden" path="coLength" value ="${keeper.coLength}"/>
-                <form:input type="hidden" path="extLength" value ="${keeper.extLength}"/>
-                <form:input type="hidden" path="lowMount" value ="${keeper.lowMount}"/>
-            </form:form>
-        </td>
-        <td>
-            <form:form action="${processInput}" modelAttribute="keeper">
-                <form:select path="lowMount" onchange="this.form.submit()">
+            </td>
+            <td>
+                <form:select path="lowMount" onchange="selectForm.submit()">
                     <c:if test="${!empty keeper.lowMount}">
                         <form:option value="${keeper.lowMount}" label="${keeper.lowMount}"/>
                     </c:if>
                     <form:options items="${keeper.lowMounts}"/>
                 </form:select>
-                <form:input type="hidden" path="shockMake" value ="${keeper.shockMake}"/>
-                <form:input type="hidden" path="coLength" value ="${keeper.coLength}"/>
-                <form:input type="hidden" path="extLength" value ="${keeper.extLength}"/>
-                <form:input type="hidden" path="upMount" value ="${keeper.upMount}"/>
-            </form:form>
-        </td>
+            </td>
+        </form:form>
     </tr>
     <c:if test="${keeper.readyForFilter}">
         <tr>
-          <td>
-              <form:form action="${showResults}" modelAttribute="keeper">
-                  <input type="submit" value="<spring:message text="Find Shocks"/>"/>
-                  <form:input type="hidden" path="shockMake" value ="${keeper.shockMake}"/>
-                  <form:input type="hidden" path="coLength" value ="${keeper.coLength}"/>
-                  <form:input type="hidden" path="extLength" value ="${keeper.extLength}"/>
-                  <form:input type="hidden" path="upMount" value ="${keeper.upMount}"/>
-                  <form:input type="hidden" path="lowMount" value ="${keeper.lowMount}"/>
-              </form:form>
-          </td>
+            <td>
+                <form:form action="${showResults}" modelAttribute="keeper">
+                    <input type="submit" value="<spring:message text="Find Shocks"/>"/>
+                    <form:input type="hidden" path="shockMake" value ="${keeper.shockMake}"/>
+                    <form:input type="hidden" path="upMount" value ="${keeper.upMount}"/>
+                    <form:input type="hidden" path="lowMount" value ="${keeper.lowMount}"/>
+                    <form:input type="hidden" path="coLengthFrom" value ="${keeper.coLengthFrom}"/>
+                    <form:input type="hidden" path="coLengthTo" value ="${keeper.coLengthTo}"/>
+                    <form:input type="hidden" path="extLengthFrom" value ="${keeper.extLengthFrom}"/>
+                    <form:input type="hidden" path="extLengthTo" value ="${keeper.extLengthTo}"/>
+                </form:form>
+            </td>
         </tr>
     </c:if>
 </table>

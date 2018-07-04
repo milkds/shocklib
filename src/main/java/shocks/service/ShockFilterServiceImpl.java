@@ -21,55 +21,39 @@ public class ShockFilterServiceImpl implements ShockFilterService {
         this.shockFilterDao.populateFilters(filterKeep);
     }
 
+    @Override
+    public void processInput(ShockFilter keeper) {
+        System.out.println("input processed");
+    }
+
 
     //this it for case, when user removes his previous choice
     private void checkFilterForDrop(ShockFilter filterKeep){
+        String nullInput = "--- Select ---";
         String shockMake = filterKeep.getShockMake();
-        String colLength = filterKeep.getCoLength();
-        String extLength = filterKeep.getExtLength();
         String upMount = filterKeep.getUpMount();
         String lowMount = filterKeep.getLowMount();
 
         if (shockMake!=null){
-            if (shockMake.equals("--- Select ---")){
+            if (shockMake.equals(nullInput)){
                 filterKeep.setShockMake(null);
             }
         }
-        if (colLength!=null){
-            if (colLength.equals("--- Select ---")){
-                filterKeep.setCoLength(null);
-            }
-        }
-        if (extLength!=null){
-            if (extLength.equals("--- Select ---")){
-                filterKeep.setExtLength(null);
-            }
-        }
         if (upMount!=null){
-            if (upMount.equals("--- Select ---")){
+            if (upMount.equals(nullInput)){
                 filterKeep.setUpMount(null);
             }
         }
         if (lowMount!=null){
-            if (lowMount.equals("--- Select ---")){
+            if (lowMount.equals(nullInput)){
                 filterKeep.setLowMount(null);
             }
         }
     }
 
     private void checkIfReadyForFilter(ShockFilter filterKeep){
-        String colLength = filterKeep.getCoLength();
-        String extLength = filterKeep.getExtLength();
         String upMount = filterKeep.getUpMount();
         String lowMount = filterKeep.getLowMount();
-        if (colLength!=null&&colLength.length()>0){
-            filterKeep.setReadyForFilter(true);
-            return;
-        }
-        if (extLength!=null&&extLength.length()>0){
-            filterKeep.setReadyForFilter(true);
-            return;
-        }
         if (upMount!=null&&upMount.length()>0){
             filterKeep.setReadyForFilter(true);
             return;

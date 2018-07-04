@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,18 +70,17 @@ public class ShockDaoImpl implements ShockDao {
     private List<Predicate> getPredicates(ShockFilter filterKeep, CriteriaBuilder builder, Root<ShockAbsorber> root){
         List<Predicate> predicates = new ArrayList<>();
         String shockMake = filterKeep.getShockMake();
-        String colLength = filterKeep.getCoLength();
-        String extLength = filterKeep.getExtLength();
         String upMount = filterKeep.getUpMount();
         String lowMount = filterKeep.getLowMount();
+
+        BigDecimal coLengthFrom = filterKeep.getCoLengthFrom();
+        BigDecimal coLengthTo = filterKeep.getCoLengthTo();
+        BigDecimal extLengthFrom = filterKeep.getExtLengthFrom();
+        BigDecimal extLengthTo = filterKeep.getExtLengthTo();
+
+
         if (shockMake!=null&&shockMake.length()>0){
             predicates.add(builder.equal(root.get("shockMake"),shockMake));
-        }
-        if (colLength!=null&&colLength.length()>0){
-            predicates.add(builder.equal(root.get("colLength"),colLength));
-        }
-        if (extLength!=null&&extLength.length()>0){
-            predicates.add(builder.equal(root.get("extLength"),extLength));
         }
         if (upMount!=null&&upMount.length()>0){
             predicates.add(builder.equal(root.get("upMount"),upMount));
@@ -88,6 +88,38 @@ public class ShockDaoImpl implements ShockDao {
         if (lowMount!=null&&lowMount.length()>0){
             predicates.add(builder.equal(root.get("lowMount"),lowMount));
         }
+
+        if (coLengthFrom!=null&&coLengthFrom.compareTo(BigDecimal.ZERO)!=0){
+            predicates.add(builder.greaterThanOrEqualTo(root.get("colLength"),coLengthFrom));
+        }
+        if (coLengthTo!=null&&coLengthTo.compareTo(BigDecimal.ZERO)!=0){
+            predicates.add(builder.lessThanOrEqualTo(root.get("colLength"),coLengthTo));
+        }
+        if (extLengthFrom!=null&&extLengthFrom.compareTo(BigDecimal.ZERO)!=0){
+            predicates.add(builder.greaterThanOrEqualTo(root.get("extLength"),extLengthFrom));
+        }
+        if (extLengthTo!=null&&extLengthTo.compareTo(BigDecimal.ZERO)!=0){
+            predicates.add(builder.lessThanOrEqualTo(root.get("extLength"),extLengthTo));
+        }
+
+        /*Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(ShockAbsorberRev.class);
+
+        List<ShockAbsorberRev> shocks = criteria.list();
+        for (ShockAbsorberRev shock : shocks) {
+            if (shock.getShockMake().equals("Rancho")) {
+                BigDecimal extL = shock.getExtLength();
+                BigDecimal colL = shock.getColLength();
+                session = sessionFactory.getCurrentSession();
+                shock.setColLength(extL);
+                shock.setExtLength(colL);
+                session.update(shock);
+            }
+        }*/
+
+           // System.out.println(Double.parseDouble(extL));
+
+
 
         return predicates;
     }
